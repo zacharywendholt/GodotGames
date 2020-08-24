@@ -1,0 +1,1 @@
+Game made with the godot engine. to run the game, click on the godot.exe in the game folder.

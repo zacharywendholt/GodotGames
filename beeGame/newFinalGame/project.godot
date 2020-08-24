@@ -1,0 +1,38 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Sprite",
+"class": "Spritesheet",
+"language": "GDScript",
+"path": "res://go_modules/Spritesheet.gd"
+} ]
+_global_script_class_icons={
+"Spritesheet": ""
+}
+
+[application]
+
+config/name="newFinalProject"
+run/main_scene="res://Main.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+go="*res://go.gd"
+global="*res://global.gd"
+
+[debug]
+
+shapes/collision/shape_color=Color( 0.160784, 0, 1, 0.498039 )
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

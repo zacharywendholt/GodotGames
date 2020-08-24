@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Hummingbird.gd" type="Script" id=1]
+[ext_resource path="res://Hummingbird.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "hummingBirdFlight"
+length = 0.3
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 8.82473
+
+[node name="Hummingbird" type="Node2D"]
+position = Vector2( 900.75, 235.35 )
+scale = Vector2( 2, 2 )
+z_index = 2
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+vframes = 3
+frame = 1
+_sections_unfolded = [ "Animation", "Offset", "Visibility" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("..")
+autoplay = "hummingBirdFlight"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 2.5
+anims/hummingBirdFlight = SubResource( 1 )
+blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
+
+[node name="Area2D" type="Area2D" parent="."]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0.933411, -4.10674 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
